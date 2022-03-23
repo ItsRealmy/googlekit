@@ -36,11 +36,16 @@ module.exports = async (query, page) => {
       const url = rawLink.rawAttributes.href;
 
       // Title
-      const title = rawLink.querySelector(".LC20lb.MBeuO.DKV0Md").innerText;
+      const titleEl = rawLink.querySelector(".LC20lb.MBeuO.DKV0Md");
+      let title;
+      if (titleEl) title = titleEl.innerText;
+      else title = "This item doesn't have a title.";
 
       // Description
       const descEl = result.querySelector(".NJo7tc.Z26q7c.uUuwM > div > span") || result.querySelector(".IsZvec > div > span");
-      const description = descEl.innerText;
+      let description;
+      if (descEl) description = descEl.innerText;
+      else description = "This item doesn't have a description.";
 
       // Push to result list
       results.push({ url: url.trim(), title: title.trim(), description: description.trim() });
