@@ -42,7 +42,7 @@ module.exports = async (query, page) => {
       else title = "This item doesn't have a title.";
 
       // Description
-      const descEl = result.querySelector(".NJo7tc.Z26q7c.uUuwM > div > span") || result.querySelector(".IsZvec > div > span");
+      const descEl = result.querySelector(".NJo7tc.Z26q7c.uUuwM > div") || result.querySelector(".IsZvec > div");
       let description;
       if (descEl) description = descEl.innerText;
       else description = "This item doesn't have a description.";
