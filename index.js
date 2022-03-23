@@ -57,6 +57,10 @@ module.exports = async (query, page) => {
       });
     });
 
+    results = results.filter((item) => {
+      try { new URL(item.url); return true; } catch { return false; }
+    });
+
     return results;
   }
   else return false;
