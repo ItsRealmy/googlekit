@@ -1,12 +1,14 @@
 const axios = require("axios");
 const { parse } = require("node-html-parser");
 
-module.exports = async (query, page) => {
+module.exports = async (query, page, options = {}) => {
   // Get HTML from Google (with Chrome user agent to make sure you get the correct result page)
   const resp = await axios.get("https://google.com/search", {
     params: {
       q: query,
-      start: (page) ? page * 10 : 0
+      start: (page) ? page * 10 : 0,
+      cr: (options.country) ? "country" + options.country.toUpperCase() : null,
+      hl: options.language || null
     },
 
     headers: {
