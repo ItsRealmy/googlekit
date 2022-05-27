@@ -1,6 +1,5 @@
 const axios = require('axios');
 const { parse } = require('node-html-parser');
-const fs = require('fs');
 
 const removeDuplicates = require('./lib/removeDuplicates');
 
@@ -31,8 +30,6 @@ module.exports = async (query, page, options = {}) => {
   if (resp) {
     const document = parse(resp);
     document.querySelectorAll('script').forEach((el) => el.remove());
-
-    fs.writeFileSync('./test.html', document.outerHTML);
 
     let returnObject = { errors: [], results: [], rawHTML: resp };
 
