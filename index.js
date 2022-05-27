@@ -9,7 +9,7 @@ module.exports = async (query, page, options = {}) => {
     params: {
       q: query,
       start: (page) ? page * 10 : 0,
-      cr: (options.country) ? "country" + options.country.toUpperCase() : null,
+      cr: (options.country) ? 'country' + options.country.toUpperCase() : null,
       hl: options.language || null
     },
   
