@@ -1,6 +1,6 @@
 const axios = require('axios');
 const { parse } = require('node-html-parser');
-const decode = require('decode-html');
+const decode = require('./lib/decodeHTML');
 
 const removeDuplicates = require('./lib/removeDuplicates');
 
