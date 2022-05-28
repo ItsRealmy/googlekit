@@ -1,5 +1,6 @@
 const axios = require('axios');
 const { parse } = require('node-html-parser');
+const decode = require('decode-html');
 
 const removeDuplicates = require('./lib/removeDuplicates');
 
@@ -56,7 +57,7 @@ module.exports = async (query, page, options = {}) => {
             throw new Error('URL is not a valid URL');
           }
 
-          result.url = urlElement.rawAttributes.href;
+          result.url = decode(urlElement.rawAttributes.href);
         } else {
           throw new Error('No URL present in result');
         }
@@ -65,14 +66,14 @@ module.exports = async (query, page, options = {}) => {
         const titleElement = urlElement.querySelector('h3');
 
         if (titleElement && titleElement.innerText) {
-          result.title = titleElement.innerText;
+          result.title = decode(titleElement.innerText);
         }
 
         // Get description
         const descriptionElement = el.querySelector('.VwiC3b.yXK7lf.MUxGbd.yDYNvb.lyLwlc.lEBKkf > span:not(.MUxGbd.wuQ4Ob.WZ8Tjf)');
 
         if (descriptionElement && descriptionElement.innerText) {
-          result.description = descriptionElement.innerText;
+          result.description = decode(descriptionElement.innerText);
         }
 
         results.push(result);
