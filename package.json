@@ -1,6 +1,6 @@
 {
   "name": "googlekit",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Get an array of search results from Google.",
   "main": "index.js",
   "scripts": {

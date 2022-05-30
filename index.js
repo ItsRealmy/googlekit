@@ -32,9 +32,11 @@ module.exports = async (query, page, options = {}) => {
     const document = parse(resp);
     document.querySelectorAll('script').forEach((el) => el.remove());
 
-    let returnObject = { errors: [], results: [], rawHTML: resp };
+    let returnObject = { errors: [], results: [], meta: { ads: 0 }, rawHTML: resp };
 
     let results = [];
+
+    returnObject.meta.ads = document.querySelectorAll("#tads > .uEierd").length;
 
     // All result elements
     const resultElements = document.querySelectorAll('#res .g, #res .g .FxLDp li');
